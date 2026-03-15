@@ -84,8 +84,8 @@ cmd_status() {
     banner
     echo -e "${BLUE}┌──[ NODE TELEMETRY ]───────────────────────────────────────┐${NC}"
     
-    echo -n -e "${BLUE}│${NC} CI Runner:          "
-    if systemctl is-active --quiet "github-runner-trashcan-worker"; then
+    echo -n -e "${BLUE}│${NC} CI:          "
+    if systemctl is-active --quiet "github-runner-trashcan-worker.service"; then
         echo -e "${GREEN}● ONLINE${NC}"
     else
         echo -e "${RED}● OFFLINE${NC}"
