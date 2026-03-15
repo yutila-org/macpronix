@@ -7,7 +7,7 @@ set -euo pipefail
 
 # -- CONFIGURATION --
 REPO_ROOT="$HOME/macpronix"
-VERSION="5.1.0"
+VERSION="5.2.0"
 
 # -- PALETTE --
 RED='\033[0;31m'
@@ -46,14 +46,10 @@ EOF
     echo ""
 }
 
-# -- CORE LOGIC --
-
 cmd_sync() {
     log_info "Initiating synchronization..."
     cd "$REPO_ROOT" || die "Repository not found at $REPO_ROOT"
 
-    # 1. FETCH & RESET
-    # Enforce remote state as the single source of truth.
     log_info "Fetching upstream..."
     git fetch origin
 
@@ -61,17 +57,18 @@ cmd_sync() {
         die "Git reset failed. Check network."
     fi
 
-    # 2. CLEANUP
-    # Remove untracked files to prevent lockfile drift.
-    git clean -fd
+    git clean -fd -e "*.keys"
 
-    # 3. VACCINE
-    # Normalize line endings for Nix evaluator.
+    if [ -f "hosts/trashcan/admin.keys" ]; then
+        log_info "Identity detected. Staging for Nix..."
+        git add --force --intent-to-add hosts/trashcan/admin.keys
+    else
+        die "Security Critical: 'hosts/trashcan/admin.keys' is missing.\n       Cannot deploy a locked-down system without admin keys."
+    fi
+
     find . -type f -name "*.nix" -exec sed -i 's/\r$//' {} + 2>/dev/null || true
     chmod +x bin/macpronix
 
-    # 4. DEPLOY
-    # Delegate to Makefile for hardware injection and build.
     log_info "Injecting hardware config and building..."
     make install
 }
@@ -87,9 +84,17 @@ cmd_status() {
     banner
     echo -e "${BLUE}┌──[ NODE TELEMETRY ]───────────────────────────────────────┐${NC}"
     
-    echo -n -e "${BLUE}│${NC} CI Runner:   "
+    echo -n -e "${BLUE}│${NC} CI Runner:          "
     if systemctl is-active --quiet "github-runner-trashcan-worker"; then
         echo -e "${GREEN}● ONLINE${NC}"
+    else
+        echo -e "${RED}● OFFLINE${NC}"
+    fi
+
+    echo -n -e "${BLUE}│${NC} Docker:      "
+    if systemctl is-active --quiet "docker"; then
+        CNT=$(docker ps -q 2>/dev/null | wc -l)
+        echo -e "${GREEN}● ONLINE ($CNT containers)${NC}"
     else
         echo -e "${RED}● OFFLINE${NC}"
     fi

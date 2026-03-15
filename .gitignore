@@ -5,6 +5,7 @@ result-*
 .devenv
 
 # Secrets & Local State
+*.keys
 *.key
 *.keys
 *.pem

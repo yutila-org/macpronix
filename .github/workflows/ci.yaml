@@ -1,5 +1,5 @@
-name: ASC-1.3 Integrity
-# Authority: Avant Systems Canon (Clause 8)
+name: CI
+# Authority: CI
 # Target: Physical Compute Node (Trashcan)
 
 on:
@@ -30,9 +30,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
+<<<<<<< HEAD:.github/workflows/asc.yaml
       # [NEW] Inject Synthetic Identity for CI Context
       - name: Inject CI Identity
         run: echo 'ssh-ed25519 C1ATAAANINAADA31lCEzICA5aZ_DUMMY_KEY_FOR_CI_CHECK_ONLY ci@tarantula' > hosts/trashcan/admin.keys
+=======
+      - name: Inject CI Identity
+        run: |
+          echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAACI_DUMMY_KEY_FOR_CI_CHECK_ONLY ci@tarantula' > hosts/trashcan/admin.keys
+          git add -f hosts/trashcan/admin.keys
+>>>>>>> 742a358813644bc0ed7322129f500456f849e500:.github/workflows/ci.yaml
         
       - name: Hardware Syntax Check
         run: nix flake check --show-trace
