@@ -21,6 +21,18 @@
     autoPrune.enable = true;
   };
 
+  # [SEC] Advanced Security Posture
+  security.apparmor.enable = true;
+  security.auditd.enable = true;
+  security.audit.enable = true;
+  security.pam.sshAgentAuth.enable = true;
+
+  # [SEC] Kernel Hardening
+  boot.kernel.sysctl = {
+    "kernel.unprivileged_bpf_disabled" = 1;
+    "kernel.dmesg_restrict" = 1;
+  };
+
   # 3. SYSTEM ARCHITECTURE
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -41,8 +53,12 @@
   networking.firewall = {
     enable = true;
     trustedInterfaces = [ "tailscale0" "docker0" ];
-    allowedTCPPorts = [ 22 ];
+    # [SEC] Zero-Trust: SSH is only accessible via Tailscale VPN
+    # allowedTCPPorts = [ 22 ]; 
   };
+
+  # [SEC] Defense-in-Depth
+  services.fail2ban.enable = true;
 
   # [SEC] Hardened SSH
   services.openssh = {
@@ -59,6 +75,27 @@
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 30d";
+  };
+
+  # [SEC] Automated Upgrades (Upstream Flake Lock Updates)
+  systemd.timers.macpronix-upgrade = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "daily";
+      Persistent = true;
+    };
+  };
+
+  systemd.services.macpronix-upgrade = {
+    script = ''
+      # macpronix is in the system path, execute upgrade as the admin user
+      cd /home/admin/macpronix
+      /run/current-system/sw/bin/macpronix upgrade
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "admin";
+    };
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
