@@ -11,7 +11,7 @@
 
 ## Overview
 
-**Macpronix** turns your "Trashcan" Mac Pro (6,1) into a high-performance, declarative Linux server. It provides a stable, immutable infrastructure foundation for self-hosting everything from GitHub Actions Workers to complex containerized stacks.
+**Macpronix** turns your "Trashcan" Mac Pro (6,1) into a high-performance, declarative Linux server. It provides a stable, immutable infrastructure foundation for self-hosting complex containerized stacks and services.
 
 ## Architecture
 

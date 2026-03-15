@@ -1,10 +1,6 @@
 { config, pkgs, pkgs-unstable, ... }:
 
 {
-  imports = [
-    ./runner.nix
-  ];
-
   # ==========================================
   # UNIVERSAL MAC PRO 6,1 OS LAYER
   # ==========================================
