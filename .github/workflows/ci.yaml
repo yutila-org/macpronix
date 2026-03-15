@@ -1,5 +1,5 @@
-name: ASC-1.3 Integrity
-# Authority: Avant Systems Canon (Clause 8)
+name: CI
+# Authority: CI
 # Target: Physical Compute Node (Trashcan)
 
 on:

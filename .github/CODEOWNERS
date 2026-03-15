@@ -1,22 +1,16 @@
-# Governed by Avant Systems Canon (ASC-1.3)
-
-# --- THE DIRECTORATE (Tier 0) ---
-/SECURITY.md             @tarantula-org/steering
-/CONTRIBUTING.md         @tarantula-org/steering
-/.github/                @tarantula-org/steering
-CITATION.cff             @tarantula-org/steering
-LICENSE                  @tarantula-org/steering
-
-# --- CORE SYSTEMS (Tier 1) ---
-*.nix                    @tarantula-org/core
-hosts/                   @tarantula-org/core
-bin/                     @tarantula-org/core
-Makefile                 @tarantula-org/core
-flake.lock               @tarantula-org/core
-
-# --- STUDIO CREATIVE (Tier 2) ---
-*.md                     @tarantula-org/studio
-logo.svg                 @tarantula-org/studio
-
-# --- SECURITY (Tier 3) ---
-.github/workflows/       @tarantula-org/security @tarantula-org/steering
+/SECURITY.md             @tarantula-org/security
+/CONTRIBUTING.md         @tarantula-org/architecture
+/.github/                @tarantula-org/architecture
+CITATION.cff             @tarantula-org/governance
+LICENSE                  @tarantula-org/governance
+*.nix                    @tarantula-org/engineering
+*.h                      @tarantula-org/engineering
+Makefile                 @tarantula-org/engineering
+hosts/                   @tarantula-org/engineering
+bin/                     @tarantula-org/engineering
+flake.lock               @tarantula-org/engineering
+*.md                     @tarantula-org/engineering
+docs/                    @tarantula-org/engineering
+assets/                  @tarantula-org/engineering
+logo.svg                 @tarantula-org/engineering
+.github/workflows/       @tarantula-org/security @tarantula-org/architecture
