@@ -35,7 +35,7 @@ jobs:
       
       - name: Inject CI Identity
         run: |
-          echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAACI_DUMMY_KEY_FOR_CI_CHECK_ONLY ci@tarantula' > hosts/trashcan/admin.keys
+          echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAACI_DUMMY_KEY_FOR_CI_CHECK_ONLY ci@yutila' > hosts/trashcan/admin.keys
           git add -f hosts/trashcan/admin.keys
         
       - name: Hardware Syntax Check

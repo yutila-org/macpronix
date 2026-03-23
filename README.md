@@ -49,7 +49,7 @@ The node is managed via `macpronix`, a CLI tool that abstracts NixOS rebuilds, e
 To bootstrap a new MacPro node or deploy locally, clone the repository and configure your SSH keys:
 
 ```bash
-git clone https://github.com/tarantula-org/macpronix ~/macpronix
+git clone https://github.com/yutila-org/macpronix ~/macpronix
 cd ~/macpronix
 ```
 

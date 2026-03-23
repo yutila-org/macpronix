@@ -1,16 +1,16 @@
-/SECURITY.md             @tarantula-org/security
-/CONTRIBUTING.md         @tarantula-org/architecture
-/.github/                @tarantula-org/architecture
-CITATION.cff             @tarantula-org/governance
-LICENSE                  @tarantula-org/governance
-*.nix                    @tarantula-org/engineering
-*.h                      @tarantula-org/engineering
-Makefile                 @tarantula-org/engineering
-hosts/                   @tarantula-org/engineering
-bin/                     @tarantula-org/engineering
-flake.lock               @tarantula-org/engineering
-*.md                     @tarantula-org/engineering
-docs/                    @tarantula-org/engineering
-assets/                  @tarantula-org/engineering
-logo.svg                 @tarantula-org/engineering
-.github/workflows/       @tarantula-org/security @tarantula-org/architecture
+/SECURITY.md             @yutila-org/security
+/CONTRIBUTING.md         @yutila-org/architecture
+/.github/                @yutila-org/architecture
+CITATION.cff             @yutila-org/governance
+LICENSE                  @yutila-org/governance
+*.nix                    @yutila-org/engineering
+*.h                      @yutila-org/engineering
+Makefile                 @yutila-org/engineering
+hosts/                   @yutila-org/engineering
+bin/                     @yutila-org/engineering
+flake.lock               @yutila-org/engineering
+*.md                     @yutila-org/engineering
+docs/                    @yutila-org/engineering
+assets/                  @yutila-org/engineering
+logo.svg                 @yutila-org/engineering
+.github/workflows/       @yutila-org/security @yutila-org/architecture
