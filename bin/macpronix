@@ -7,7 +7,7 @@ set -euo pipefail
 
 # -- CONFIGURATION --
 REPO_ROOT="$HOME/macpronix"
-VERSION="5.2.0"
+VERSION=$(cat "$REPO_ROOT/VERSION.txt")
 
 # -- PALETTE --
 RED='\033[0;31m'

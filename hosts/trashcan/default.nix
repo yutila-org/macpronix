@@ -109,6 +109,10 @@
   environment.shellAliases = { vim = "nvim"; vi = "nvim"; };
 
   # 6. IDENTITY
+  # Disable root password explicitly. All admin actions must use sudo 
+  # authenticated via your forwarded SSH agent keys (security.pam.sshAgentAuth)
+  users.users.root.hashedPassword = "!";
+
   users.users.admin = {
     isNormalUser = true;
     description = "Node Admin";
