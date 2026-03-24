@@ -77,8 +77,11 @@ cmd_upgrade() {
     log_info "Upgrading system dependencies..."
     cd "$REPO_ROOT" || die "Repository not found"
     nix flake update
-    log_success "Flake updated. Commit 'flake.lock' to push to fleet."
+    log_info "Rebuilding system to apply upgrades..."
+    sudo nixos-rebuild switch --flake .#trashcan --impure
+    log_success "Flake updated and system upgraded. Commit 'flake.lock' to push to fleet."
 }
+
 
 cmd_status() {
     banner

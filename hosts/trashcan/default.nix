@@ -44,7 +44,10 @@
   
   # Disable iwd to prevent race conditions for the card
   networking.wireless.iwd.enable = false;
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    package = pkgs-unstable.tailscale;
+  };
 
   networking.firewall = {
     enable = true;
